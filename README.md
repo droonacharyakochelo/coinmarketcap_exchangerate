@@ -111,7 +111,7 @@ Each tuple contains the ticker symbol, currency name and its price in USD.
 
 ## Requirements
 
-- Python 3.7+
+- Python 3.10+
 - requests
 
 ## API Documentation
