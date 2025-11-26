@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="coinmarketcap-exchangerate",
-    version="1.0",
+    version="1.0.0",
     author="Droonacharya Ko Chelo",
     author_email="droonacharyakohelo@gmail.com",
     description="A Python module to fetch cryptocurrency prices from CoinMarketCap API and forex prices from ExchangeRate API",
