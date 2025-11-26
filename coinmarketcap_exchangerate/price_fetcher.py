@@ -47,7 +47,7 @@ class PriceFetcher:
 
     def _load_forex_symbols(self) -> Dict[str, str]:
         try:
-            with open(os.path.join(os.path.dirname(__file__), '..', 'db', 'exchange_rate_currencies.json'), 'r') as f:
+            with open(os.path.join(os.path.dirname(__file__), '..', 'db', 'exchange_rate_currencies.json'), 'r', encoding='utf-8') as f:
                 return json.load(f)
         except FileNotFoundError:
             return "File not found!"
@@ -137,12 +137,12 @@ class PriceFetcher:
             
             # Get USD as base rate (1.0)
             if 'USD' in tickers:
-                prices.append(('USD', 1.0))
+                prices.append(('USD', 'United States Dollar', 1.0))
             
             # Get other requested rates
             for ticker in tickers:
                 if ticker != 'USD' and ticker in rates:
-                    prices.append((ticker, rates[ticker]))
+                    prices.append((ticker, self.forex_symbols[ticker], rates[ticker]))
                     
         except Exception as e:
             print(f"Error fetching forex prices: {e}")
@@ -191,7 +191,8 @@ class PriceFetcher:
                 for ticker in tickers:
                     if ticker in data['data']:
                         price = data['data'][ticker]['quote']['USD']['price']
-                        prices.append((ticker, price))
+                        name = data['data'][ticker]['name']
+                        prices.append((ticker, name, price))
                         
         except Exception as e:
             print(f"Error fetching crypto prices: {e}")

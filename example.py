@@ -20,6 +20,7 @@ def main():
     # er_api_key = 'Your Exchangerate API Key'
 
     fetcher = PriceFetcher(cmc_api_key, er_api_key)
+    # fetcher = PriceFetcher()
     
     # Example tickers - mix of cryptocurrencies and forex
     tickers = ['BTC', 'ETH', 'EUR', 'JPY', 'DOT', 'BNB', 'CNY']
@@ -32,9 +33,8 @@ def main():
     
     # Display results
     if prices:
-        for ticker, price in prices:
-            print(f"{ticker:>5}: {price:>10.6f}" if ticker in ['BTC', 'ETH', 'DOT', 'BNB'] 
-                  else f"{ticker:>5}: {price:>10.6f}")
+        for ticker, name, price in prices:
+            print(f"{ticker:>5}:\t{name}:\t{price:>10.6f}")
     else:
         print("No prices fetched. Check your API keys and internet connection.")
 
